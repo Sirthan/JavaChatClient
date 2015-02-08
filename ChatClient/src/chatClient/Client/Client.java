@@ -19,7 +19,6 @@ public class Client implements Runnable {
 	private String username = null;
 	private ClientThread client = null;
 	
-	public static final int RED = 0b0001, GREEN = 0b0010, BLUE = 0b0100; //Color bit-fields
 
 	public Client(String serverName, int serverPort, String username) {
 		System.out.println("Attempting to establish connection");
@@ -55,12 +54,17 @@ public class Client implements Runnable {
 				if (mes.split(" ")[0].equals(".color")) {
 					String color = mes.split(" ")[1];
 					if (color.equals("RED")) GUI.color = Color.RED;
-					else if (color.equals("GREEN"))  GUI.color = Color.GREEN;
-					else if (color.equals("BLUE"))  GUI.color = Color.BLUE;
-					else if (color.equals("PINK")) GUI.color = Color.PINK;
-					else if (color.equals("CYAN")) GUI.color = Color.CYAN;
-					else if (color.equals("BROWN")) GUI.color = new Color(158, 84, 32);
-					else if (color.equals("SILVER")) GUI.color = new Color(163, 168, 168);
+					else if (color.equalsIgnoreCase("GREEN"))  GUI.color = Color.GREEN;
+					else if (color.equalsIgnoreCase("BLUE"))  GUI.color = Color.BLUE;
+					else if (color.equalsIgnoreCase("PINK")) GUI.color = Color.PINK;
+					else if (color.equalsIgnoreCase("CYAN")) GUI.color = Color.CYAN;
+					else if (color.equalsIgnoreCase("BROWN")) GUI.color = new Color(158, 84, 32);
+					else if (color.equalsIgnoreCase("SILVER")) GUI.color = new Color(163, 168, 168);
+					else if (color.equalsIgnoreCase("YELLOW")) GUI.color = Color.YELLOW;
+					else if (color.equalsIgnoreCase("ORANGE")) GUI.color = Color.ORANGE;
+					else if (color.equalsIgnoreCase("SMEXY")) GUI.color = new Color(255, 179, 171);
+					else if (color.equalsIgnoreCase("DGREEN")) GUI.color = new Color(4, 130, 0);
+					
 				}
 			} else {
 				if(mes.trim().length() != 0){

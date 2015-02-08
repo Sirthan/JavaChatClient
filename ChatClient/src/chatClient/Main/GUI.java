@@ -15,13 +15,17 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.BoundedRangeModel;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -102,6 +106,11 @@ public class GUI extends JFrame {
 		sendButton.setBounds(430, 266, 60, 23);
 		getContentPane().add(sendButton);
 		
+		InputMap im = outgoingMessagePane.getInputMap();
+        im.put(KeyStroke.getKeyStroke("ENTER"), "none");
+        im.put(KeyStroke.getKeyStroke("released ENTER"), "released");
+        this.outgoingMessagePane.getRootPane().setDefaultButton(sendButton);
+		
 		setSize(500, 300);
 		
 		addMouseMotionListener(new MouseMotionListener() {
@@ -137,5 +146,6 @@ public class GUI extends JFrame {
         incomingMessagePane.setCharacterAttributes(aset, false);
         
 		incomingMessagePane.setText(incomingMessagePane.getText() + "\n" + mes);
+		incomingMessagePane.setCaretPosition(incomingMessagePane.getDocument().getLength());
 	}
 }
