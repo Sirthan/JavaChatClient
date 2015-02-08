@@ -11,9 +11,8 @@ import java.net.UnknownHostException;
 import chatClient.Main.GUI;
 
 
-public class Client implements Runnable {  
+public class Client {  
 	private Socket socket = null;
-	private Thread thread = null;
 	private BufferedReader console = null;
 	private DataOutputStream streamOut = null;
 	private String username = null;
@@ -37,12 +36,6 @@ public class Client implements Runnable {
 			System.exit(1);
 		}
 	}
-	@Override
-	public void run() {
-		// while(thread != null){
-		//
-		// }
-	}
 	public void sendData(String mes) {
 		try {
 			if(mes.charAt(0) == '*'){
@@ -64,12 +57,14 @@ public class Client implements Runnable {
 					else if (color.equalsIgnoreCase("ORANGE")) GUI.color = Color.ORANGE;
 					else if (color.equalsIgnoreCase("SMEXY")) GUI.color = new Color(255, 179, 171);
 					else if (color.equalsIgnoreCase("DGREEN")) GUI.color = new Color(4, 130, 0);
+					else GUI.color = Color.BLACK;
 					
+					GUI.appendMessage(">> Color changed to " + color + "!");
 				}
 			} else {
 				if(mes.trim().length() != 0){
-					System.out.println(username + ": " + mes);
-					streamOut.writeUTF(username + ": " + mes);
+					System.out.println(username + " says: " + mes);
+					streamOut.writeUTF(username + " says: " + mes);
 					streamOut.flush();
 				}
 			}
@@ -85,23 +80,12 @@ public class Client implements Runnable {
 	public void begin() throws IOException {
 		console = new BufferedReader(new InputStreamReader(System.in));
 		streamOut = new DataOutputStream(socket.getOutputStream());
-		if (thread == null) {
-			client = new ClientThread(this);
-			thread = new Thread(this);
-			thread.start();
-		}
-		
+		client = new ClientThread(this);
+		sendData("*joins the party!!");
 	}
 	public void end() {
+		sendData("*leaves D=");
 		try {
-			if (thread != null) {
-				try {
-					thread.join();
-				} catch (InterruptedException error) {
-					error.printStackTrace();
-				}
-				thread = null;
-			}
 			if (console != null)
 				console.close();
 			if (streamOut != null)

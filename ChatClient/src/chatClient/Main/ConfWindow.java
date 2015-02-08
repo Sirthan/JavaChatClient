@@ -11,6 +11,10 @@ import javax.swing.JTextField;
 import chatClient.Client.Client;
 
 public class ConfWindow extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6090430585917935066L;
 	private JTextField ipTextField;
 	private JTextField usernameField;
 	

@@ -15,14 +15,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.BoundedRangeModel;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
@@ -35,6 +33,10 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
 public class GUI extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static JTextPane outgoingMessagePane = null;
 	public static JTextPane incomingMessagePane = null;
 	public static Color color = Color.BLACK;
@@ -82,7 +84,7 @@ public class GUI extends JFrame {
 		topPanel.add(titleLabel, BorderLayout.CENTER);
 		
 		incomingMessagePane = new JTextPane();
-		incomingMessagePane.setText("JIM Version 0.0.2\nCopyright 2015, Silicon Incorporated, All rights reserved.");
+		incomingMessagePane.setText("JIM Version 0.1.2\nCopyright 2015, Silicon Incorporated, All rights reserved.");
 		incomingMessagePane.setEditable(false);
 		
 		JScrollPane scrollPane = new JScrollPane(incomingMessagePane);
