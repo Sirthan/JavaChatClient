@@ -1,9 +1,7 @@
 package chatClient.Client;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 
 public class ClientThread extends Thread{
@@ -44,6 +42,7 @@ public class ClientThread extends Thread{
 			} catch(IOException error){
 				System.out.println("ERROR : Error in listening! Please report to SiliconIncorporatedOrganization!");
 				System.out.println(error.getMessage());
+				client.end();
 			}
 		}
 	}
