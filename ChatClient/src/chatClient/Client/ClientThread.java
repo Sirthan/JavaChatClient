@@ -15,34 +15,33 @@ public class ClientThread extends Thread{
 		begin();
 		start();
 	}
-	
 	public void begin(){
-		try{
-			streamIn = new DataInputStream(socket.getInputStream());;
+		try {
+			streamIn = new DataInputStream(socket.getInputStream());
 		} catch(IOException error){
 			System.out.println("ERROR : Error in getting Input Stream! Please report to SiliconIncorporatedOrganization!");
 			System.out.println(error.getMessage());
 			client.end();
 		}
 	}
-	
 	public void end(){
-		try{
+		try {
 			if(streamIn != null) streamIn.close();
-		} catch(IOException error){
+			System.exit(0);
+		} catch(IOException error) {
 			System.out.println("ERROR : Error in closing! Please report to SiliconIncorporatedOrganization!");
 			System.out.println(error.getMessage());
 		}
 	}
-	
-	public void run(){
-			while(true){
-				try{
-					client.handle(streamIn.readUTF());
-			} catch(IOException error){
+	public void run() {
+		while (true) {
+			try {
+				client.handle(streamIn.readUTF());
+			} catch (IOException error) {
 				System.out.println("ERROR : Error in listening! Please report to SiliconIncorporatedOrganization!");
 				System.out.println(error.getMessage());
 				client.end();
+				System.exit(1);
 			}
 		}
 	}
