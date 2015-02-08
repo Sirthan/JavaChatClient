@@ -9,7 +9,7 @@ import java.net.Socket;
 public class ClientThread extends Thread{
 	private Socket socket = null;
 	private Client client = null;
-	private BufferedReader streamIn = null;
+	private DataInputStream streamIn = null;
 	
 	public ClientThread(Client client){
 		this.client = client;
@@ -20,7 +20,7 @@ public class ClientThread extends Thread{
 	
 	public void begin(){
 		try{
-			streamIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));;
+			streamIn = new DataInputStream(socket.getInputStream());;
 		} catch(IOException error){
 			System.out.println("ERROR : Error in getting Input Stream! Please report to SiliconIncorporatedOrganization!");
 			System.out.println(error.getMessage());
@@ -40,7 +40,7 @@ public class ClientThread extends Thread{
 	public void run(){
 			while(true){
 				try{
-					client.handle(streamIn.readLine());
+					client.handle(streamIn.readUTF());
 			} catch(IOException error){
 				System.out.println("ERROR : Error in listening! Please report to SiliconIncorporatedOrganization!");
 				System.out.println(error.getMessage());
